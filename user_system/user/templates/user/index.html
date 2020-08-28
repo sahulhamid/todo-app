@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+ <h1 > Welcome to my To Do here you can create you daily works to  do </h1>
+
+ <div>
+     <h3>To Create your own ToDo Register Here </h3>
+
+         <h4><a href="{% url 'register' %}" >Register</a></h4>
+     <h3>If you have an account Login Here </h3>
+         <h4> <a href="{% url 'login' %}">Log In</a></h4>
+         <h4> <a href="{% url 'logout' %}">Log Out</a></h4>
+
+     <h3> Come here after login </h3>
+
+     <h4> <a href="{% url 'home' %}">Go to my Task</a></h4>
+
+ </div>
+
+</body>
+</html>

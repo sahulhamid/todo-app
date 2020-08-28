@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+
+</head>
+<body>
+<h3 class="text-success"> Hey Users, Enter Your valid details</h3>
+<form method="POST" class="form-group">
+    {% if form.errors %}
+            <h1>ERRORRRRRR same email again???</h1>
+            {% endif %}
+    <div class="container border border-warning mx-auto m-3 p-3">
+        {% csrf_token %}
+        UserName:
+    <p>{{ form.username }}</p>
+
+        Password:
+        <p>{{ form.password }}</p>
+
+        Confirm Password:
+        <p>{{ form.confirm_password }}</p>
+
+        <input type="submit" class="btn btn-success" value="Next">
+
+    </div>
+
+</form>
+
+
+
+</body>
+</html>

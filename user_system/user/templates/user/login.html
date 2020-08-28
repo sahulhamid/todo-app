@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+
+</head>
+
+
+<body>
+<h3 > Enter Same Username and Password what you given in Registration </h3>
+<form method="post" >
+    <div>
+        {% csrf_token %}
+        UserName
+        <p>{{ form.username }}</p>
+        Password
+        <p>{{ form.password}}</p>
+    <input type="submit" value="Enter">
+    </div>
+</form>
+</body>
+</html>
