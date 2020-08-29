@@ -1,15 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>home</title>
+{% extends 'user/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    {% if todos %}
+    {% for todo in todos %}
+        <div class=" models-container ">
+            <div class="i-model">
+                <h2>{{todo.title}}  </h2>
+                <p>{{todo.sdesc}}</p>
+                <a href="#">View Task</a>
+            </div>
+            <a class="signup" href="{% url 'add-task' %}">+</a>
+        </div>
+    {% endfor %}
+    {% else %}
 
-</head>
+    <div class="user-homepage-container container">
+        <div class="user-homepage-container__sub-container">
+            <h2> <span>Welcome {{ user.username }},</span>     <br> You currently have 0 tasks</h2>
+            <p>Click here to add tasks</p>
+            
+            <a href="{% url 'add-task' %}"><div class="add-task-button">+</div></a> 
+            
+        </div>
+        
+    </div>
 
-<body>
 
 
-    <div>
+
+
+
+
+
+
+
+
+
+    {% endif %}
+    <!-- <div>
     <h1 >welcome  "{{ user.username }}"</h1>
 
     <h2> create your daily Task</h2>
@@ -33,8 +61,7 @@
 
     </div>
 
-     <h4> <a href="{% url 'logout' %}" >Log Out</a></h4>
+     <h4> <a href="{% url 'logout' %}" >Log Out</a></h4> -->
 
 
-</body>
-</html>
+{% endblock %}

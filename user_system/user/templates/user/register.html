@@ -1,12 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>register</title>
+{% extends 'user/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="signup-container container">
+        <div class=" container__content">
+            <h2>Sign Up</h2>
+            <div class="input-container">
+                <form action="" method="POST" >
+                    {% csrf_token %}
+                {% if form.username.errors %}
+                <p>Username Taken</p>
+                {% endif %}
+                {{wrong}}
+                <label for="username">Username</label>
+                <!-- <input type="text" id="username"> -->
 
-</head>
-<body>
-<h3 class="text-success"> Hey Users, Enter Your valid details</h3>
+                 {% render_field form.username id="username" %}
+
+                <label for="password">Password</label>
+                <!-- <input type="text" id="password"> -->
+                 {% render_field form.password id="password" %}
+
+                <label for="confirm-password">Confirm-Password</label>
+                <!-- <input type="text" id="confirm-password"> -->
+
+                 {% render_field form.confirm_password id="confirm-password" %}
+
+                 {% if form.password.errors %}
+                 <h6>Password doesnt  match</h6>
+                 {% endif %}
+                <input type="submit" value="Sign Up" class="signup">   
+                </form> 
+            </div>
+        </div> 
+    </div>
+<!-- <h3 class="text-success"> Hey Users, Enter Your valid details</h3>
 <form method="POST" class="form-group">
     {% if form.errors %}
             <h1>ERRORRRRRR same email again???</h1>
@@ -26,9 +53,5 @@
 
     </div>
 
-</form>
-
-
-
-</body>
-</html>
+</form> -->
+{% endblock %}

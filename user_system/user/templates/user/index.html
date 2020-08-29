@@ -1,11 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>index</title>
-</head>
-<body>
- <h1 > Welcome to my To Do here you can create you daily works to  do </h1>
+{% extends 'user/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+     {% if todos %}
+    {% for todo in todos %}
+        <div class=" models-container ">
+            <div class="i-model">
+                <h2>{{todo.title}}  </h2>
+                <p>{{todo.sdesc}}</p>
+                <a href="#">View Task</a>
+            </div>
+            <a class="signup" href="{% url 'add-task' %}">+</a>
+        </div>
+    {% endfor %}
+
+    {% else %}
+
+    <div class="user-homepage-container container">
+        <div class="user-homepage-container__sub-container">
+            <h2> <span>Welcome {{ user.username }},</span>     <br> You currently have 0 tasks</h2>
+            <p>Click here to add tasks</p>
+            
+            <a href="{% url 'add-task' %}"><div class="add-task-button">+</div></a> 
+            
+        </div>
+        
+    </div>  
+    {% endif %} 
+	
+    
+<!--  <h1 > Welcome to my To Do here you can create you daily works to  do </h1>
 
  <div>
      <h3>To Create your own ToDo Register Here </h3>
@@ -19,7 +42,17 @@
 
      <h4> <a href="{% url 'home' %}">Go to my Task</a></h4>
 
- </div>
+ </div> -->
+    {% else %} 
+    
+     <main>
+        <h1>TRACKING TASKS SIMPLIFIED</h1>
+        <h3>Never even think of missing tasks</h3>
+        <!-- <input class="signup" type="submit" value="SIGN UP"> -->
+        <a href="{% url 'register' %}" class="signup">Sign Up</a>
+        <p>Already an user?<a href="{% url 'login' %}"> Log In</a><p>
+    </main>
+    {% endif %}
 
-</body>
-</html>
+{% endblock %}
+

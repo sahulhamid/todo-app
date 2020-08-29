@@ -11,7 +11,7 @@ from .models import Todo
 from .forms import TodoForm
 from django.contrib.auth.decorators import login_required
 from django import forms
-
+from django.contrib import messages
 def index(request):
     return render(request, 'user/index.html')
 
@@ -61,8 +61,8 @@ def register(request):
             confirm_password = request.POST.get("confirm_password")
 
             if password != confirm_password:
-               return render(request,'user/check.html')
-
+                wrong='Wrong password'
+                return render(request,'user/register.html',{'form':form,'wrong':wrong})
             user = User(username=username, password=hashed_password)
             user.save()
             return redirect('login')
@@ -88,3 +88,29 @@ def logout(request):
     return render(request,'user/logout.html')
 
 
+# @login_required()
+# def addtask(request):
+#     form=TodoForm()
+#     if request.method=='POST':
+#         form=TodoForm(request.POST)
+#         if form.is_valid():
+#             print('hello')
+#             form.save()
+#             return redirect('home')
+#         else:
+#             print('failed')    
+#     context={'form':form}
+#     return render(request,'user/add-task.html',context)    
+
+def addtask(request):
+    form=TodoForm()
+    if request.method=='POST':
+        form=TodoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context={'form':form}
+    return render(request,'user/add-task.html',context)
+
+def about(request):
+    return render(request,'user/about.html') 

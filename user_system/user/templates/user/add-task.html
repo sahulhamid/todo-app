@@ -1,0 +1,38 @@
+{% extends 'user/base.html' %}
+{% block content %}
+	
+	<div class="form-container">
+        <form action="" method="POST" >
+        	{% csrf_token %}
+        	{{form.author}}
+        	<p>Title of the task</p>
+        		{{form.title}}
+        	<p>Description(if required)</p>
+        		{{form.description}}
+
+        	<div class="title-wrapper">
+                <p>Time</p>
+                <p>Completed</p>
+            </div>	
+            <div class="check-wrapper">
+                {{form.tasked}}
+        		{{form.completed}}
+            </div>
+        		
+                <!-- <p>Title of the task</p>
+                <input type="text">
+                <p>Description(if required)</p>
+                <input type="text" class="desc">
+            <div class="title-wrapper">
+                <p>Time</p>
+                <p>Completed</p>
+            </div>
+            <div class="check-wrapper">
+                <input type="datetime-local">
+                <input type="checkbox">
+            </div> -->
+            <input type="submit" value="Add Task" class="signup">
+        </form>
+        
+    </div>
+{% endblock %}
