@@ -26,8 +26,6 @@ class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
         fields='__all__'
-        tasked=forms.DateTimeField(
-            widget=forms.DateTimeInput(format='%m/%d/%Y %H:%M:%S'),
-            input_formats=('%m/%d/%Y %H:%S:%M'),)
+        
         
 
