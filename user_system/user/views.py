@@ -15,21 +15,21 @@ from django.contrib import messages
 def index(request):
     return render(request, 'user/index.html')
 
-@login_required()
-def home(request):
-    current_user = request.user
-    todos = current_user.todo_set.all()
-    form = TodoForm(request.POST)
-    if request.method == 'POST':
-        form = TodoForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            completed = form.cleaned_data['completed']
-            form = current_user.todo_set.create(title=title, completed=completed)
-            form.save()
-            return redirect('home')
+# @login_required()
+# def index(request):
+#     current_user = request.user
+#     todos = current_user.todo_set.all()
+#     form = TodoForm(request.POST)
+#     if request.method == 'POST':
+#         form = TodoForm(request.POST)
+#         if form.is_valid():
+#             title = form.cleaned_data['title']
+#             completed = form.cleaned_data['completed']
+#             form = current_user.todo_set.create(title=title, completed=completed)
+#             form.save()
+#             return redirect('index')
 
-    return render(request,'user/home.html', {'todos':todos, 'form':form})
+#     return render(request,'user/index.html', {'todos':todos, 'form':form})
 
 @login_required()
 def update(request,pk):
@@ -39,7 +39,7 @@ def update(request,pk):
         form = TodoForm(request.POST, instance=sel_task)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('index')
     return render(request, 'user/update.html', {'form':form})
 
 @login_required()
@@ -47,7 +47,7 @@ def delete(request,pk):
     del_task = Todo.objects.get(id=pk)
     if request.method == 'POST':
         del_task.delete()
-        return redirect('home')
+        return redirect('index')
     return render(request,'user/delete.html')
 
 def register(request):
@@ -80,7 +80,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request,user)
-                return redirect('home')
+                return redirect('index')
     return render(request, 'user/login.html'  , {'form':form})
 
 def logout(request):
@@ -96,7 +96,7 @@ def logout(request):
 #         if form.is_valid():
 #             print('hello')
 #             form.save()
-#             return redirect('home')
+#             return redirect('index')
 #         else:
 #             print('failed')    
 #     context={'form':form}
@@ -106,9 +106,10 @@ def addtask(request):
     form=TodoForm()
     if request.method=='POST':
         form=TodoForm(request.POST)
+        print(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('index')
     context={'form':form}
     return render(request,'user/add-task.html',context)
 

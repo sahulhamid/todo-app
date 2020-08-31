@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>delete</title>
+{% extends 'user/base.html' %}
+{% block content %}
 
-</head>
-<body>
-<h2 > Complete Task and Delete it</h2>
+
+<div class="delete-container container">
+        <div class="form-container">
+            <form action="" method="POST">
+                <h5>Delete Task</h5>
+                <p>Are you sure you want to delete?</p>
+                <h2>Youtube watch and sleep</h2>
+                <div class="btns">
+                    <a class="signup" href="#">Cancel</a>
+                    <input type="submit" value="Delete" class="del signup">
+                </div>   
+                
+            </form>
+            
+        </div>
+    </div>
+<!-- <h2 > Complete Task and Delete it</h2>
 <form method="post">
     {% csrf_token %}
     <input type="submit" class="btn btn-outline-danger" value="Delete the task">
 
 
-</form>
-</body>
-</html>
+</form> -->
+{% endblock %}

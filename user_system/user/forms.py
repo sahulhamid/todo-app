@@ -18,14 +18,16 @@ class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
 
-class DateInput(forms.DateInput):
-    input_type="datetime-local"
+# class DateTimeInput(forms.DateTimeInput):
+#     input_type="datetime-local"
+
 
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
         fields='__all__'
-        widgets={
-        'tasked':DateInput()
-        }
+        tasked=forms.DateTimeField(
+            widget=forms.DateTimeInput(format='%m/%d/%Y %H:%M:%S'),
+            input_formats=('%m/%d/%Y %H:%S:%M'),)
+        
 

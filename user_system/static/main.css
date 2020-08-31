@@ -36,6 +36,18 @@ h2 {
   .container__content {
     width: 80%;
   }
+  header{
+    flex-wrap: wrap;
+  }
+  header .nav-btns{
+    flex-wrap: wrap;
+    padding:.8em 0;
+  }
+  header .nav-btns a{
+    flex:1 1 400px;
+    text-align: center;
+    padding:.7em 0;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -104,9 +116,13 @@ header {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 50%;
           flex: 1 1 50%;
-  font-weight: 600;
+  padding: .8em 0;
 }
-
+.logo-section a{
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+}
 .nav-btns {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 50%;
@@ -126,7 +142,9 @@ header {
           align-items: center;
   padding: .8em;
 }
-
+.menu{
+  display: none;
+}
 .nav-btns a {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
@@ -155,7 +173,7 @@ main {
 @media screen and (max-width: 400px) {
   main {
     background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8))), url("/assets/checklist.jpg") no-repeat center;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/assets/checklist.jpg") no-repeat center;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("checklist.jpg") no-repeat center;
     background-size: cover;
   }
 }
@@ -177,6 +195,24 @@ main h1 {
   main h1 {
     font-size: 3.5rem;
   }
+  .nav-btns{
+    display: none;
+  }
+  .menu{
+    height: 20px;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .menu span{
+    line-height: 0;
+    display: inline-block;
+    width: 100%;
+    height: 3px;
+    background: black;
+}
 }
 
 main h3 {
@@ -253,7 +289,7 @@ main p a:hover {
   margin-top: 1rem;
 }
 .logout-container a{
-  color: white;
+  color: lighten(blue,30%);
   text-decoration:none;
 }
 .logout-container a:hover{
@@ -495,4 +531,66 @@ main p a:hover {
   -webkit-transform: translateX(-90%);
           transform: translateX(-90%);
 }
+.update-container form h5 {
+  color: blue;
+  font-size: 2rem;
+  font-weight: 400;
+}
+.delete-container form h5 {
+  color: red;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.delete-container form h5 {
+  color: red;
+  font-size: 2rem;
+  font-weight: 400;
+}
+.delete-container form p {
+  font-size: 1.2rem;
+}
+
+.delete-container form h2 {
+  text-align: left;
+  padding-top: 0;
+  font-size: 2.8rem;
+  font-weight: 200;
+  font-family: 'Roboto condensed',sans-serif;
+}
+
+.delete-container form .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.delete-container form .btns a {
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+.delete-container form .btns .del {
+  background: red;
+  letter-spacing: 0;
+}
+
+.delete-container form .btns .del:hover {
+  background: #b30000;
+}
 /*# sourceMappingURL=styles.css.map */
+
+.none{
+  display: flex;
+}

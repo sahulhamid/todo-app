@@ -2,6 +2,9 @@
 {% block content %}
 	
 	<div class="form-container">
+        {% for error in errors %}
+            {{error}}
+        {% endfor %}
         <form action="" method="POST" >
         	{% csrf_token %}
         	{{form.author}}

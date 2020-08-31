@@ -1,23 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>update</title>
+{% extends 'user/base.html' %}
+{% block content %}
+<div class="update-container container" >
+        <div class="form-container">
+            <form action="" method="POST">
+            	{% csrf_token %}
+                <h5>Update Task</h5>
+                    <p>Title of the task</p>
+                    <!-- <input type="text"> -->
+                    {{form.title}}
+                    <p>Description(if required)</p>
+                    <!-- <input type="text" class="desc"> -->
+                    {{form.description}}
+                <div class="title-wrapper">
+                    <p>Time</p>
+                    <p>Completed</p>
+                </div>
+                <div class="check-wrapper">
+                    <!-- <input type="datetime-local"> -->
+                    {{form.tasked}}
+                    <!-- <input type="checkbox"> -->
+                    {{form.completed}}
+                </div>
+                <input type="submit" value="Update Changes" class="signup">
+            </form>
+            
+        </div>
+    </div>
 
-</head>
-
-<body>
-<h3 class="text-danger"> Update Your Task </h3>
+<!-- <h3 class="text-danger"> Update Your Task </h3>
 
 <form method="post" >
 
-    {% csrf_token %}
+    
       {{ form }}
     <input type="submit" value="update">
 
-</form>
+</form> -->
 
 
-
-</body>
-</html>
+{% endblock %}

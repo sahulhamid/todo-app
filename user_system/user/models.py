@@ -10,7 +10,7 @@ class Todo(models.Model):
     title = models.CharField(max_length=30)
     description=models.CharField(max_length=200,blank=True,null=True)
     completed = models.BooleanField(default=False)
-    tasked = models.DateTimeField()
+    tasked = models.DateTimeField(default=timezone.now)
 
 
     def __str__(self):
