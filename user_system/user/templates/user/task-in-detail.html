@@ -1,19 +1,37 @@
-{% extends 'users/base.html' %}
+{% extends 'user/base.html' %}
+{% load humanize %}
 {% block content %}
-	<div class="update-container container" >
-        <div class="form-container">
-            <form action="" method="POST">
-                <h2>{{todo.title}}</h2>
+	<div class="delete-container container" >
+            <div class="form-container">
+                <form>
+                <!-- <h2>{{todo.title}}</h2>
 				<h5>{{todo.description}}</h5>
 				<small>{{todo.tasked}}</small>
 				{{todo.completed}}
                 <a class="signup" href="{% url 'update' todo.id %}">Update</a>
-                <a href="{% url 'delete' todo.id %}" class="del signup">Delete</a>
-            </form>
-            
-        </div>
-    </div>
+                <a href="{% url 'delete' todo.id %}" class="del signup">Delete</a> -->
+                
+                <h2>{{todo.title}}</h2>
+                {% if todo.description is None %}
+                <p style="font-size: 1rem;">*No description provided*</p>
+                {% else %}
+                <p style="font-size: 1rem;">{{todo.description}}</p>
+                {% endif %}
+                <p>Time remaining :{{todo.tasked|naturaltime}}</p>
+                {% if todo.completed %}
+                <small style="display:inline-block;color:green;font-size: 2rem;margin-top: 20px;">Task Accomplished</small>
+                {% else %}
+                <small style="display:inline-block;color:red;font-size: 2rem;margin-top: 20px;">Incomplete Task</small>
+                {% endif %}
+                <div class="btns">
+                    <a class="signup" href="{% url 'update' todo.id %}">Update</a>
+                    <!-- <input type="submit" value="Delete" class="del signup"> -->
+                    <a href="{% url 'delete' todo.id %}" class="del signup">Delete</a> 
 
+                </div> 
+                </form>
+            </div>    
+    </div>
 
 
 {% endblock %}

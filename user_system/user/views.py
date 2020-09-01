@@ -17,7 +17,7 @@ from django.contrib import messages
 
 def index(request):
     current_user = request.user
-    todos = current_user.todo_set.all()
+    todos = current_user.todo_set.all().order_by('-tasked')
     print(todos)
     return render(request,'user/index.html', {'todos':todos})
 
@@ -34,7 +34,7 @@ def update(request,pk):
         form = TodoForm(request.POST, instance=sel_task)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect(sel_task.get_absolute_url())
     return render(request, 'user/update.html', {'form':form})
 
 @login_required()
@@ -43,7 +43,8 @@ def delete(request,pk):
     if request.method == 'POST':
         del_task.delete()
         return redirect('index')
-    return render(request,'user/delete.html')
+    context={'model':del_task}    
+    return render(request,'user/delete.html',context)
 
 def register(request):
     form = RegisterForm()

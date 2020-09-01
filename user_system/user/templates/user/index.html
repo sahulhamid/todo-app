@@ -2,16 +2,23 @@
 {% block content %}
     {% if user.is_authenticated %}
         {% if todos %}
-           
+
                 <div class=" models-container ">
-                     {% for todo in todos %}
-                    <div class="i-model">
-                        
-                        <h2>{{todo.title}}  </h2>
-                        <p>{{todo.sdesc}}</p>
-                        <a href="{% url 'task' todo.id %}">View Task</a>
-                        
-                    </div>
+                    {% for todo in todos %}
+                        <div class="i-model">
+                            {% if todo.completed is True %}
+                            <h2><strike>{{todo.title}}</strike></h2>  
+                            {% else %}
+                            <h2>{{todo.title}}  </h2>
+                            {% endif %}
+                            {% if todo.description is None %}
+                                <p>*No description provided*</p>
+                            {% else %}
+                                <p>{{todo.sdesc}}</p>
+                            {% endif %}
+                            
+                            <a href="{% url 'task' todo.id %}">View Task</a>
+                        </div>
                     {% endfor %}
                     <a class="signup" href="{% url 'add-task' %}">+</a>
                 </div>
@@ -25,9 +32,11 @@
                     <a href="{% url 'add-task' %}"><div class="add-task-button">+</div></a>
                 </div>
             </div>  
+
         {% endif %}
 	
     {% else %} 
+
          <main>
             <h1>TRACKING TASKS SIMPLIFIED</h1>
             <h3>Never even think of missing tasks</h3>
@@ -35,6 +44,7 @@
             <a href="{% url 'register' %}" class="signup">Sign Up</a>
             <p>Already an user?<a href="{% url 'login' %}"> Log In</a><p>
         </main>
+
     {% endif %}
 
 {% endblock %}
