@@ -25,7 +25,7 @@ class LoginForm(forms.Form):
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
-        fields='__all__'
+        fields= ['title','completed','description','tasked']
         
         
 

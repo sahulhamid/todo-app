@@ -21,6 +21,11 @@ def index(request):
     print(todos)
     return render(request,'user/index.html', {'todos':todos})
 
+def tododetail(request,title):
+    todo=Todo.objects.get(title=title).first()
+    context={'todo':todo}
+    return render(request,'user/task-in-detail.html',context)
+
 @login_required()
 def update(request,pk):
     sel_task = Todo.objects.get(id=pk)
@@ -90,18 +95,26 @@ def logout(request):
 #         else:
 #             print('failed')    
 #     context={'form':form}
-#     return render(request,'user/add-task.html',context)    
+
+
 
 def addtask(request):
-    form=TodoForm()
-    if request.method=='POST':
-        form=TodoForm(request.POST)
-        print(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-    context={'form':form}
-    return render(request,'user/add-task.html',context)
+        current_user = request.user
+        form=TodoForm()
+        if request.method=='POST':
+            form=TodoForm(request.POST)
+            if form.is_valid():
+                title = form.cleaned_data['title']
+                completed = form.cleaned_data['completed']
+                description = form.cleaned_data['description']
+                tasked = form.cleaned_data['tasked']
+                form = current_user.todo_set.create(title=title,completed=completed
+                                                    ,description=description,tasked=tasked)
+                form.save()
+                return redirect('/')
+
+        context={'form':form,'current_user':current_user}
+        return render(request,'user/add-task.html',context)
 
 def about(request):
-    return render(request,'user/about.html') 
+        return render(request,'user/about.html')

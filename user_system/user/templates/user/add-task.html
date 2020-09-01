@@ -7,7 +7,7 @@
         {% endfor %}
         <form action="" method="POST" >
         	{% csrf_token %}
-        	{{form.author}}
+        	{{ current_user }}
         	<p>Title of the task</p>
         		{{form.title}}
         	<p>Description(if required)</p>

@@ -2,16 +2,20 @@
 {% block content %}
     {% if user.is_authenticated %}
         {% if todos %}
-            {% for todo in todos %}
+           
                 <div class=" models-container ">
+                     {% for todo in todos %}
                     <div class="i-model">
+                        
                         <h2>{{todo.title}}  </h2>
-                        <p>{{todo.description}}</p>
-                        <a href="#">View Task</a>
+                        <p>{{todo.sdesc}}</p>
+                        <a href="{% url 'task' todo.title %}">View Task</a>
+                        
                     </div>
+                    {% endfor %}
                     <a class="signup" href="{% url 'add-task' %}">+</a>
                 </div>
-            {% endfor %}
+            
         {% else %}
 
             <div class="user-homepage-container container">

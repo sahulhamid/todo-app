@@ -22,5 +22,10 @@ class Todo(models.Model):
     #     	   return self.description
     #         else:    
     # 	       return self.description[0:20]+"..."		
-    #     else:
-    #         return 0
+
+    def sdesc(self):
+        if self.description != None:
+            if len(self.description)<20:
+                return  self.description
+            else:
+                return self.description[0:20]+"..." 
