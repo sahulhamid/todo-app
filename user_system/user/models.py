@@ -16,8 +16,11 @@ class Todo(models.Model):
     def __str__(self):
         return self.title
 
-    def sdesc(self):
-    	if len(self.description)<20:
-    		return self.body
-
-    	return self.description[0:20]+"..."		
+    # def sdesc(self):
+    #     if self.description != null:
+    #     	if len(self.description)<20:
+    #     	   return self.description
+    #         else:    
+    # 	       return self.description[0:20]+"..."		
+    #     else:
+    #         return 0

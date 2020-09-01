@@ -12,24 +12,14 @@ from .forms import TodoForm
 from django.contrib.auth.decorators import login_required
 from django import forms
 from django.contrib import messages
-def index(request):
-    return render(request, 'user/index.html')
-
-# @login_required()
 # def index(request):
-#     current_user = request.user
-#     todos = current_user.todo_set.all()
-#     form = TodoForm(request.POST)
-#     if request.method == 'POST':
-#         form = TodoForm(request.POST)
-#         if form.is_valid():
-#             title = form.cleaned_data['title']
-#             completed = form.cleaned_data['completed']
-#             form = current_user.todo_set.create(title=title, completed=completed)
-#             form.save()
-#             return redirect('index')
+#     return render(request, 'user/index.html')
 
-#     return render(request,'user/index.html', {'todos':todos, 'form':form})
+def index(request):
+    current_user = request.user
+    todos = current_user.todo_set.all()
+    print(todos)
+    return render(request,'user/index.html', {'todos':todos})
 
 @login_required()
 def update(request,pk):
