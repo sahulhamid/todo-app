@@ -21,8 +21,8 @@ def index(request):
     print(todos)
     return render(request,'user/index.html', {'todos':todos})
 
-def tododetail(request,title):
-    todo=Todo.objects.get(title=title).first()
+def tododetail(request,pk):
+    todo=Todo.objects.get(id=pk)
     context={'todo':todo}
     return render(request,'user/task-in-detail.html',context)
 

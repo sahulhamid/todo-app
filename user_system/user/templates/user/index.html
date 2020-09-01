@@ -9,7 +9,7 @@
                         
                         <h2>{{todo.title}}  </h2>
                         <p>{{todo.sdesc}}</p>
-                        <a href="{% url 'task' todo.title %}">View Task</a>
+                        <a href="{% url 'task' todo.id %}">View Task</a>
                         
                     </div>
                     {% endfor %}
