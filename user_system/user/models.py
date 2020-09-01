@@ -4,7 +4,7 @@ from django.db import models
 
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django.urls import reverse
 class Todo(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
@@ -17,7 +17,12 @@ class Todo(models.Model):
         return self.title
 
     def sdesc(self):
-    	if len(self.description)<20:
-    		return self.body
+        if self.description != None:
+            if len(self.description)<20:
+                return  self.description
+            else:
+                return self.description[0:20]+"..." 
 
-    	return self.description[0:20]+"..."		
+    def get_absolute_url(self):
+        return reverse('task',kwargs={'pk':self.id})
+

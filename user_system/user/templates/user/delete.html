@@ -1,27 +1,19 @@
 {% extends 'user/base.html' %}
 {% block content %}
 
-
 <div class="delete-container container">
         <div class="form-container">
             <form action="" method="POST">
+                {% csrf_token %}
                 <h5>Delete Task</h5>
                 <p>Are you sure you want to delete?</p>
-                <h2>Youtube watch and sleep</h2>
+                <h2>{{model.title}}</h2>
                 <div class="btns">
-                    <a class="signup" href="#">Cancel</a>
+                    <a class="signup" href="{% url 'task' model.id %}">Cancel</a>
                     <input type="submit" value="Delete" class="del signup">
                 </div>   
-                
             </form>
-            
         </div>
-    </div>
-<!-- <h2 > Complete Task and Delete it</h2>
-<form method="post">
-    {% csrf_token %}
-    <input type="submit" class="btn btn-outline-danger" value="Delete the task">
+</div>
 
-
-</form> -->
 {% endblock %}
