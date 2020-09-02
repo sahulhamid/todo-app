@@ -1,0 +1,38 @@
+{% extends 'user/base.html' %}
+{% block content %}
+        {% if todos %}
+
+                <div class=" models-container ">
+                    {% for todo in todos %}
+                        <div class="i-model">
+                            {% if todo.completed is True %}
+                            <h2><strike>{{todo.title}}</strike></h2>  
+                            {% else %}
+                            <h2>{{todo.title}}  </h2>
+                            {% endif %}
+                            {% if todo.description is None %}
+                                <p>*No description provided*</p>
+                            {% else %}
+                                <p>{{todo.sdesc}}</p>
+                            {% endif %}
+                            
+                            <a href="{% url 'task' todo.id %}">View Task</a>
+                        </div>
+                    {% endfor %}
+                    <a class="signup" href="{% url 'add-task' %}">+</a>
+                </div>
+            
+        {% else %}
+
+            <div class="user-homepage-container container">
+                <div class="user-homepage-container__sub-container">
+                    <h2> <span>Welcome {{ user.username }},</span>     <br> You currently have 0 tasks</h2>
+                    <p>Click here to add tasks</p>
+                    <a href="{% url 'add-task' %}"><div class="add-task-button">+</div></a>
+                </div>
+            </div>  
+
+        {% endif %}
+
+
+{% endblock %}

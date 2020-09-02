@@ -16,10 +16,13 @@ from django.contrib import messages
 #     return render(request, 'user/index.html')
 
 def index(request):
-    current_user = request.user
-    todos = current_user.todo_set.all().order_by('-tasked')
-    print(todos)
-    return render(request,'user/index.html', {'todos':todos})
+    return render(request,'user/index.html')
+	  
+def taskhome(request):
+	current_user = request.user
+	todos = current_user.todo_set.all().order_by('-tasked')
+	print(todos)
+	return render(request,'user/home.html', {'todos':todos})
 
 def tododetail(request,pk):
     todo=Todo.objects.get(id=pk)
@@ -76,7 +79,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request,user)
-                return redirect('index')
+                return redirect('task-home')
     return render(request, 'user/login.html'  , {'form':form})
 
 def logout(request):
