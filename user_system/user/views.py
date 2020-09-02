@@ -45,7 +45,7 @@ def delete(request,pk):
     del_task = Todo.objects.get(id=pk)
     if request.method == 'POST':
         del_task.delete()
-        return redirect('index')
+        return redirect('task-home')
     context={'model':del_task}    
     return render(request,'user/delete.html',context)
 
@@ -87,21 +87,6 @@ def logout(request):
     return render(request,'user/logout.html')
 
 
-# @login_required()
-# def addtask(request):
-#     form=TodoForm()
-#     if request.method=='POST':
-#         form=TodoForm(request.POST)
-#         if form.is_valid():
-#             print('hello')
-#             form.save()
-#             return redirect('index')
-#         else:
-#             print('failed')    
-#     context={'form':form}
-
-
-
 def addtask(request):
         current_user = request.user
         form=TodoForm()
@@ -115,7 +100,7 @@ def addtask(request):
                 form = current_user.todo_set.create(title=title,completed=completed
                                                     ,description=description,tasked=tasked)
                 form.save()
-                return redirect('/')
+                return redirect('task-home')
 
         context={'form':form,'current_user':current_user}
         return render(request,'user/add-task.html',context)
